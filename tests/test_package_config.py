@@ -95,7 +95,26 @@ if(NOT OpenMSProSE_SOURCE_REVISION STREQUAL "{PROSE_REVISION}" OR
    NOT OpenMSProSE_SOURCE_DIRTY OR OpenMSProSE_CORE_SOURCE_DIRTY)
   message(FATAL_ERROR "Installed source identity was not preserved")
 endif()
+get_target_property(revision OpenMS::ProSE OPENMSPROSE_SOURCE_REVISION)
+if(NOT revision STREQUAL "{PROSE_REVISION}")
+  message(FATAL_ERROR "Imported target identity was not preserved")
+endif()
 """)
+
+    def test_existing_backend_from_different_revision_is_rejected(self):
+        output = self.consumer("""
+add_library(OpenMS::ProSE INTERFACE IMPORTED)
+set_property(TARGET OpenMS::ProSE PROPERTY OPENMSPROSE_SOURCE_REVISION "stale")
+find_package(OpenMSProSE CONFIG REQUIRED)
+""", False)
+        self.assertIn("An OpenMS::ProSE target from a different source revision is already loaded", output)
+
+    def test_existing_backend_without_identity_is_rejected(self):
+        output = self.consumer("""
+add_library(OpenMS::ProSE INTERFACE IMPORTED)
+find_package(OpenMSProSE CONFIG REQUIRED)
+""", False)
+        self.assertIn("An OpenMS::ProSE target from a different source revision is already loaded", output)
 
     def test_wrong_core_commit_is_rejected(self):
         self.write_core("c" * 40)
