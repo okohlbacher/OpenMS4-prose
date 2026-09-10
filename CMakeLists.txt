@@ -83,24 +83,5 @@ if(OPENMS_PROSE_BUILD_TOOL)
   add_executable(ProSE src/ProSE.cpp)
   target_link_libraries(ProSE PRIVATE OpenMS::ProSE OpenMS::CLI)
   set_target_properties(ProSE PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/$<0:>")
-  openms4_install_rpath(ProSE)
-  install(TARGETS ProSE RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-
-  set(manifest "# name\tcategory\tversion\texecutable\nProSE\t${ProSE_CATEGORY}\t${PROJECT_VERSION}\t${CMAKE_INSTALL_BINDIR}/ProSE${CMAKE_EXECUTABLE_SUFFIX}\n")
-  file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/share/openms4/tools ${CMAKE_BINARY_DIR}/install-manifests)
-  string(REPLACE "\t${CMAKE_INSTALL_BINDIR}/" "\tbin/" build_manifest "${manifest}")
-  file(WRITE ${CMAKE_BINARY_DIR}/share/openms4/tools/prose.tools.tsv "${build_manifest}")
-  file(WRITE ${CMAKE_BINARY_DIR}/install-manifests/prose.tools.tsv "${manifest}")
-  install(FILES ${CMAKE_BINARY_DIR}/install-manifests/prose.tools.tsv DESTINATION share/openms4/tools)
-
-  if(BUILD_TESTING)
-    find_package(Python3 REQUIRED COMPONENTS Interpreter)
-    foreach(format ini ctd)
-      add_test(NAME ProSE_write_${format} COMMAND ${Python3_EXECUTABLE}
-        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/CheckToolMetadata.py $<TARGET_FILE:ProSE>
-        ProSE ${PROJECT_VERSION} "${ProSE_CATEGORY}" ${format} ${CMAKE_CURRENT_BINARY_DIR}/metadata/ProSE.${format})
-      set_tests_properties(ProSE_write_${format} PROPERTIES ENVIRONMENT
-        "OPENMS_TOOL_PREFIX_PATH=${CMAKE_BINARY_DIR};OPENMS_DISABLE_UPDATE_CHECK=ON")
-    endforeach()
-  endif()
+  openms4_install_tools(prose bin ${package_tools})
 endif()
