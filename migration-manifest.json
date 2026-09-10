@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "package": "prose",
+  "upstream": "https://github.com/OpenMS/OpenMS",
+  "upstream_commit": "ca32296038839459d8c9b075b759e285913d6294",
+  "transfers": [
+    {
+      "source_package": "core",
+      "source_revision": "4fdec46b205459b92e7d3b9e56df5d8e912d5c85",
+      "old_path": "src/openms/include/OpenMS/ANALYSIS/ID/ProSEAlgorithm.h",
+      "new_path": "include/OpenMS/ANALYSIS/ID/ProSEAlgorithm.h",
+      "original_sha256": "3b45c3d193e9db8959aa3b60391b6bf7bc9e7a34d642e9bb3bcac68f59f65dec"
+    },
+    {
+      "source_package": "core",
+      "source_revision": "4fdec46b205459b92e7d3b9e56df5d8e912d5c85",
+      "old_path": "src/openms/source/ANALYSIS/ID/ProSEAlgorithm.cpp",
+      "new_path": "source/ProSEAlgorithm.cpp",
+      "original_sha256": "86c2bdd7c2d33298607c5e465738dde3ebb147ea7177761873b54c0a56876712"
+    },
+    {
+      "source_package": "core",
+      "source_revision": "4fdec46b205459b92e7d3b9e56df5d8e912d5c85",
+      "old_path": "src/tests/class_tests/openms/source/ProSEAlgorithm_test.cpp",
+      "new_path": "tests/source/ProSEAlgorithm_test.cpp",
+      "original_sha256": "f7379cf50a65cce5db8d88d4123677604818966b49b5295c1d4f5a54694688fa"
+    },
+    {
+      "source_package": "topp",
+      "source_revision": "582535805581f2bdf4f3871d6802a0b45a3abe36",
+      "old_path": "src/ProSE.cpp",
+      "new_path": "src/ProSE.cpp",
+      "original_sha256": "da40020052deb66aa61bbf2a14504b511361be0f98cb20f91b6d56d05339f4ec"
+    }
+  ],
+  "core_registration_changes_required": [
+    "src/openms/include/OpenMS/ANALYSIS/ID/sources.cmake: remove ProSEAlgorithm.h",
+    "src/openms/source/ANALYSIS/ID/sources.cmake: remove ProSEAlgorithm.cpp",
+    "src/tests/class_tests/openms/executables.cmake: remove ProSEAlgorithm_test"
+  ],
+  "topp_changes_required": [
+    "remove src/ProSE.cpp after transfer",
+    "remove ProSE tools.json entry"
+  ],
+  "core_primitives_retained": [
+    "FragmentIndex",
+    "OpenSearchModificationAnalysis",
+    "FalseDiscoveryRate",
+    "BasicProteinInferenceAlgorithm",
+    "PeptideIndexing",
+    "all file-format readers and writers"
+  ],
+  "split_tests": [
+    {
+      "source_package": "core",
+      "source_revision": "4fdec46b205459b92e7d3b9e56df5d8e912d5c85",
+      "old_path": "src/tests/class_tests/openms/source/BrukerTimsFile_test.cpp",
+      "original_sha256": "f1d577ec511ba4ba59f13321b824eca3ddf91c52d0184b3e60665a0d7f21b7ff",
+      "original_section": "DDA search engine IM annotation integration test",
+      "original_lines": [
+        850,
+        922
+      ],
+      "engine_portion_removed_from_core": [
+        874,
+        920
+      ],
+      "reader_assertions_retained": [
+        852,
+        872
+      ],
+      "new_path": "tests/source/ProSEBrukerTims_test.cpp",
+      "registration_requires": [
+        "OpenMS_WITH_OPENTIMS",
+        "OPENTIMS_DDA_TEST_DATA",
+        "OPENTIMS_TEST_FASTA"
+      ]
+    }
+  ]
+}

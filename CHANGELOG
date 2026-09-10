@@ -1,0 +1,10 @@
+OpenMS ProSE 1.0.0 (experimental OpenMS 4 package extraction)
+
+- Move ProSEAlgorithm and its report rendering into the shared OpenMS::ProSE backend.
+- Package ProSE independently; keep reusable scientific primitives and all generic
+  file-format readers/writers in the Core SDK.
+- Preserve the C++ header/API used by the separately packaged pyOpenMS bindings.
+- Move the scientific class test and the ProSE-dependent Bruker integration section
+  with their backend; retain reader-only tests in Core.
+- Extraction assisted by AI under Oliver Kohlbacher's direction; original author
+  attribution is retained. Native validation is tracked by the parent project.

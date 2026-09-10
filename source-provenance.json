@@ -1,0 +1,29 @@
+{
+  "upstream": "https://github.com/OpenMS/OpenMS",
+  "commit": "ca32296038839459d8c9b075b759e285913d6294",
+  "package": "prose",
+  "imported_files": [
+    {
+      "upstream": "src/openms/include/OpenMS/ANALYSIS/ID/ProSEAlgorithm.h",
+      "package": "prose",
+      "path": "include/OpenMS/ANALYSIS/ID/ProSEAlgorithm.h"
+    },
+    {
+      "upstream": "src/openms/source/ANALYSIS/ID/ProSEAlgorithm.cpp",
+      "package": "prose",
+      "path": "source/ProSEAlgorithm.cpp"
+    },
+    {
+      "upstream": "src/tests/class_tests/openms/source/ProSEAlgorithm_test.cpp",
+      "package": "prose",
+      "path": "tests/source/ProSEAlgorithm_test.cpp"
+    },
+    {
+      "upstream": "src/topp/ProSE.cpp",
+      "package": "prose",
+      "path": "src/ProSE.cpp"
+    }
+  ],
+  "extraction_manifest": "migration-manifest.json",
+  "note": "Exact immediately preceding Core/TOPP revisions and original hashes are recorded in migration-manifest.json. The ProSE export annotation was adapted; all scientific implementation and former class-test source were preserved."
+}

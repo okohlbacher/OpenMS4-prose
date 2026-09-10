@@ -1,0 +1,10 @@
+{
+  "package": "OpenMSProSE",
+  "version": "1.0.0",
+  "tools": [
+    {
+      "name": "ProSE",
+      "category": "Identification of Proteins and Peptides (SearchEngines)"
+    }
+  ]
+}

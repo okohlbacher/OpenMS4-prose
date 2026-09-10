@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.24)
+project(OpenMSProSEConsumer LANGUAGES CXX)
+include(CTest)
+find_package(OpenMSProSE 1.0.0 EXACT CONFIG REQUIRED)
+find_package(OpenMSProSE 1.0.0 EXACT CONFIG REQUIRED)
+add_executable(prose_consumer main.cpp)
+target_link_libraries(prose_consumer PRIVATE OpenMS::ProSE)
+add_test(NAME prose_installed_backend COMMAND prose_consumer)
