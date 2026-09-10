@@ -47,7 +47,7 @@ cmake --build build-consumer --parallel 2
 ctest --test-dir build-consumer --output-on-failure
 ```
 
-Native acceptance of this extraction is pending. The parent validation report will
-record the reduced Core build, product tests, installed consumer and Python wheel
-results. `migration-manifest.json` records the original commits, file hashes and
+See the [parent validation report](https://github.com/okohlbacher/OpenMS4-tests/blob/codex/package-split/docs/tool-backend-validation.md)
+for exact native profiles and results, including the reduced Core build, product
+tests, installed consumer and Python wheel. `migration-manifest.json` records the original commits, file hashes and
 the precise Bruker test split; no generic file-format implementation is moved.
