@@ -159,6 +159,12 @@ def main() -> None:
                            "-DOPENMS4_WARNINGS_AS_ERRORS=ON", *options, *common])
     run("build-package", ["cmake", "--build", str(build), "--config", configuration,
                        "--parallel", str(args.jobs)])
+    if windows:
+        # A package that builds its own shared library leaves the DLL in the build
+        # tree, and Windows resolves it from PATH rather than from an rpath, so the
+        # tests cannot start without it.
+        dll_dirs = sorted({str(path.parent) for path in build.rglob("*.dll")})
+        env["PATH"] = os.pathsep.join([*dll_dirs, env["PATH"]])
     run("test-package", ["ctest", "--test-dir", str(build), "-C", configuration,
                       "--output-on-failure", "--no-tests=error", "--parallel", str(args.jobs)])
     run("install-package", ["cmake", "--install", str(build), "--config", configuration])
