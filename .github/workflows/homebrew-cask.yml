@@ -37,5 +37,6 @@ jobs:
           brew tap okohlbacher/openms4-core https://github.com/okohlbacher/OpenMS4-core
           brew tap okohlbacher/openms4-prose https://github.com/okohlbacher/OpenMS4-prose
           brew install --cask okohlbacher/openms4-prose/openms4-prose
-          ProSE --help
+          ProSE -write_ini "$RUNNER_TEMP/ProSE.ini"
+          test -s "$RUNNER_TEMP/ProSE.ini"
           brew uninstall --cask openms4-prose
