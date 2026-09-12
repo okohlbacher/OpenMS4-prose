@@ -1,9 +1,9 @@
 cask "openms4-prose" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.0-ci.1,429b3a642aa2"
-  sha256 arm:   "2c8aef1435dcbabba3137c73c6cdfb35f79369905f698b40ca7f050c7090d721",
-         intel: "5b20b20ab0f9cab59591960cddc5929ed80f1c9abad8623fbcdf15f134f36dd3"
+  version "1.0.0-ci.2,828d72595677"
+  sha256 arm:   "3fe08fd24ab2ff5389365c19395ddf0f4c3f824365f1f11ffdef653447705a7d",
+         intel: "f9d072f30e3536499db5abe225f682d42d1b0defe4e00cea383fb1077ede2331"
 
   url "https://github.com/okohlbacher/OpenMS4-prose/releases/download/" \
       "prose-v#{version.csv.first}/OpenMS4-prose-macos-#{arch}-Homebrew-#{version.csv.second}.tar.gz"
