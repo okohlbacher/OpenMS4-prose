@@ -51,3 +51,25 @@ See the [parent validation report](https://github.com/okohlbacher/OpenMS4-tests/
 for exact native profiles and results, including the reduced Core build, product
 tests, installed consumer and Python wheel. `migration-manifest.json` records the original commits, file hashes and
 the precise Bruker test split; no generic file-format implementation is moved.
+
+<!-- package-graph:begin -->
+## Where this package sits
+
+![OpenMS 4 package architecture](docs/package-architecture.svg)
+
+`prose` builds against the installed **core**, **cli**, **test-data** packages at the revisions recorded in [`dependencies.lock.json`](dependencies.lock.json). **pyopenms** builds against it.
+
+| Repository | Relation | Contents |
+| --- | --- | --- |
+| [OpenMS4-core](https://github.com/okohlbacher/OpenMS4-core) | dependency | scientific library, OpenSwathAlgo, readers and writers, runtime data, optional TestSupport |
+| [OpenMS4-cli](https://github.com/okohlbacher/OpenMS4-cli) | dependency | TOPPBase, tool registration and discovery |
+| [OpenMS4-test-data](https://github.com/okohlbacher/OpenMS4-test-data) | dependency | versioned fixtures and the installed numerical suite |
+| [OpenMS4-pyopenms](https://github.com/okohlbacher/OpenMS4-pyopenms) | consumer | nanobind bindings, installed module tree and repaired wheels |
+
+The eighteen repositories are assembled by the parent repository
+[OpenMS4-tests](https://github.com/okohlbacher/OpenMS4-tests), which holds the submodule pins (`packages.lock.json`), the
+dependency-order build runner and the contract tests that keep the graph consistent.
+[`docs/project-state.md`](https://github.com/okohlbacher/OpenMS4-tests/blob/codex/package-split/docs/project-state.md) is the current state
+of the whole project; [`docs/build-split-packages.md`](https://github.com/okohlbacher/OpenMS4-tests/blob/codex/package-split/docs/build-split-packages.md)
+reproduces the installed-SDK build.
+<!-- package-graph:end -->
