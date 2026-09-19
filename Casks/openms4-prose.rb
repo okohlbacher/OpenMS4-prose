@@ -1,9 +1,9 @@
 cask "openms4-prose" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.0-ci.5,11bc89966a2a"
-  sha256 arm:   "c35090665040670dc26fac7fab55c6932db43b120e5cf3562f28e363065d9130",
-         intel: "501efa166afa2f29f66c719a8c6b98a6b2bb139c386f6fbd7704c4af0a6c66b8"
+  version "1.0.0-ci.6,bc6eebce6a19"
+  sha256 arm:   "4901f3e70447e52e9e780ac5afebad23414b1a7c61e46c98aa5a47da0fd28ffd",
+         intel: "c27b18c467adb50761770e71a6be6f4aae4f1d6969687bac699edae052607b75"
 
   url "https://github.com/okohlbacher/OpenMS4-prose/releases/download/" \
       "prose-v#{version.csv.first}/OpenMS4-prose-macos-#{arch}-Homebrew-#{version.csv.second}.tar.gz"
@@ -21,9 +21,9 @@ cask "openms4-prose" do
   preflight do
     config = "#{HOMEBREW_PREFIX}/opt/openms4-core/lib/cmake/OpenMS/OpenMSConfig.cmake"
     core = File.exist?(config) ? File.read(config)[/set\(OpenMS_SOURCE_REVISION "([0-9a-f]{40})"\)/, 1] : nil
-    next if core == "eb58e981d7e0864634b59230874a56a1512369f7"
+    next if core == "7d90cec8718d28518527acc10b495550f106de26"
 
-    raise Cask::CaskError, "openms4-prose #{version.csv.first} was built against openms4-core eb58e981d7e0, " \
+    raise Cask::CaskError, "openms4-prose #{version.csv.first} was built against openms4-core 7d90cec8718d, " \
                            "but the installed openms4-core is #{core&.slice(0, 12) || "unknown"}. " \
                            "Install the openms4-prose release built for the installed Core."
   end
